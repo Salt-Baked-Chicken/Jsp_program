@@ -24,9 +24,7 @@ public class test {
             ResultSet rs = prst.executeQuery();
             topic_bean topic_b = null;
             while (rs.next()) {
-                //我们班听课人数不超过10个
                 topic_b = new topic_bean();
-                System.out.println("序号:" + rs.getString("id") + "   " + "主题:" + rs.getString("topic"));
                 topic_b.setId(rs.getInt("id"));
                 topic_b.settopic(rs.getString("topic"));
                 ta.add(topic_b);

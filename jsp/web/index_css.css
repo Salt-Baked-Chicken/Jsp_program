@@ -37,11 +37,18 @@ body{
 #p{
     margin-left: 60px;
     font-size: 19px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#control_page{
+    margin-left: 80px;
+}
+#pcbtn{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 #sl{
-    height: 5px;
+    height: 1.5px;
     width: 100%;
     background-color: #ffcf25;
     margin-bottom: 50px;

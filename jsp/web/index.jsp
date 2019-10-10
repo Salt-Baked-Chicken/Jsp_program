@@ -1,5 +1,6 @@
-<%@ page import="shit.test" %>
-<%@ page import="shit.topic_bean" %>
+<%@ page import="shit.jdbc_select" %>
+<%@ page import="shit.page_bean" %>
+<%@ page import="shit.jdbc_select_limitpage" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -11,7 +12,7 @@
     <div id="b">
       <a id="h">newsomething</a>
       <div id="ss">
-        <form action="topic_control.jsp" method="post">
+        <form action="login_control.jsp" method="post">
           <input class="s" value="shit" name="name">
           <input class="s" value="shit" name="psw">
           <button class="btn" type="submit">登陆</button>
@@ -21,22 +22,86 @@
 
     <div>
       <p id="p" style="padding: 30px">
-        <%
-            if (session.getAttribute("name") != null){
+        <%  //建对象并初始化当前页面值
+            jdbc_select a = new jdbc_select();
+            jdbc_select_limitpage sl = new jdbc_select_limitpage();
+            page_bean p = new page_bean();
+            if (p.getCurr_page_no() == 0){
+                p.setCurr_page_no(1);
+            }
+            p.setNews_size(a.a().size()+1);
+            p.setTotal_Page_Count(p.getNews_size());
+
+            //检测账户登陆
+            if (session.getAttribute("name") != null) {
                 if (session.getAttribute("name").equals("shit") && session.getAttribute("psw").equals("shit")) {
-                    test a = new test();
-                    for (int i = 0; i < a.a().size();i++){
-                        out.println(a.a().get(i).getId());
-                        out.println(a.a().get(i).gettopic());
-                        out.println("</br>");
-                        out.println("</br>");
+
+                    //页数作为下标传入limit限制数num计算
+                    int num;
+                    if (p.getCurr_page_no() == 1) {
+                        num = p.getCurr_page_no() - 1;
+                    } else {
+                        num = (p.getCurr_page_no() - 1) * 4;
+                    }
+                    //防止尾页数组越界检测,如果整数正常输出，余数则在余数页用余数作为for的i下标
+                    if (p.getCurr_page_no() != p.getTotal_page_count()) {
+                        for (int i = 0; i < p.getPage_size(); i++) {
+                            out.println(sl.a(num).get(i).getId());
+                            out.println(sl.a(num).get(i).gettopic());
+                            out.println("</br>");
+                            out.println("</br>");
+                        }
+                    } else if (p.getCurr_page_no() == p.getTotal_page_count()) {
+                        int abb = Integer.parseInt(String.valueOf(session.getAttribute("p")));
+                        p.setLast_page_news(abb);
+                        for (int i = 0; i < p.getLast_page_news() - 1; i++) {
+                            System.out.println(p.getLast_page_news());
+                            out.println(sl.a(num).get(i).getId());
+                            out.println(sl.a(num).get(i).gettopic());
+                            out.println("</br>");
+                            out.println("</br>");
+                        }
                     }
                 }
-            }else{
+            }else {
                 out.println("未登录，不让你查看内容，嘿嘿！");
             }
         %>
       </p>
+    </div>
+
+    <div id="control_page">
+        <div>
+            <a class="page_m">当前页数
+                <%
+                    out.println(p.getCurr_page_no());
+                %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <a class="page_m">每页显示条目
+                <%
+                    out.println(p.getPage_size());
+                %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <a class="page_m">新闻总条目
+                <%//设置新闻总数目
+                    out.println(p.getNews_size() + 1);
+                %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <a class="page_m">总共页数
+                <%  //设置总共页数
+                    out.println(p.getTotal_page_count());
+                %>
+            </a>
+        </div>
+
+        <div id="pcbtn">
+            <button onclick="window.location='page_control1.jsp'" class="bttn">首页</button>
+            <button onclick="window.location='page_control2.jsp'" class="bttn">上一页</button>
+            <button onclick="window.location='page_control3.jsp'" class="bttn">下一页</button>
+            <button onclick="window.location='page_control4.jsp'" class="bttn">末页</button>
+        </div>
     </div>
 
     <div id="sl"></div>

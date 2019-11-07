@@ -1,0 +1,86 @@
+body{
+    background-color: #f7f7f7;
+}
+#b{
+    height: 100px;
+    background: #2a218b;
+    padding: 20px;
+}
+#h{
+    margin-left: 80px;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
+#ss{
+    float: right;
+    margin-right: 80px;
+}
+.btn{
+    margin-top: 5px;
+    color: white;
+    height: 35px;
+    width: 80px;
+    background-color: dodgerblue;
+    border-radius: 30px;
+    border: 0px;
+    outline:none;
+}
+.s{
+    box-shadow: 2px 5px grey;
+    margin-right: 10px;
+    height: 25px;
+    width: 150px;
+    border-radius: 30px;
+    padding-left: 10px;
+}
+#p{
+    margin-left: 60px;
+    font-size: 19px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#control_page{
+    margin-left: 80px;
+}
+#pcbtn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#sl{
+    height: 1.5px;
+    width: 100%;
+    background-color: #ffcf25;
+    margin-bottom: 50px;
+}
+#cure{
+    margin-left: 80px;
+    font-size: 18px;
+}
+#ppp{
+    margin-bottom: 30px;
+}
+.bttn{
+    margin-top: 5px;
+    color: white;
+    text-indent: 10px;
+    letter-spacing: 2px;
+    height: 30px;
+    box-shadow: 0 5px 0 gray;
+    width: 80px;
+    background-color: dodgerblue;
+    border-radius: 30px;
+    border: 0px;
+    outline:none;
+}
+.c{
+    margin-right: 30px;
+}
+#ft{
+    margin-top: 80px;
+    background-color: #a70135;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    bottom: 0px;
+}
